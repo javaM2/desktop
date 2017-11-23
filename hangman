@@ -1,0 +1,130 @@
+// You are going to write a program that will allow 
+// the user to play a game like hangman (Links to an 
+// external site.)Links to an external site., where 
+// your program chooses a phrase from a text file and 
+// then displays blanks for the user to guess the word.
+// The user will have a set number of incorrect guesses
+// and if they do not guess the phrase within that 
+// number of tries, they will lose the game.
+
+import java.util.*;
+import java.io.*;
+
+public class hangmanMiriamAbaata
+{
+   public static final int MAX = 5;
+   public static void main(String[] args) throws FileNotFoundException
+   {
+      String[] phrase = loadInput("hangman.txt");
+      boolean[] guess = playGame();
+      if(checkIfSolved())
+         printPuzzle();
+      else
+         playGame(phrase);
+      checkGuess();
+      System.out.println("Let's play a game of word guess.");
+      System.out.println("You can guess wrong up to " + MAX + " times."); 
+   }
+   
+   // reads in phrases from a text file called hangman.txt 
+   public static String[] loadInput(String fileName) throws FileNotFoundException
+   {
+      Scanner file = new Scanner(new File("hangman.txt"));
+      int size = file.nextInt();
+      String[] phrases = new String[size];     
+      int i = 0;
+      while(file.hasNextLine())
+      {
+         phrases[i] = file.nextLine();
+         i++;
+      }
+      return phrases;
+   }
+   
+   // takes an array of phrases as a parameter and returns one at randome
+   public static String[] pickPuzzle(String[] arr)
+   {
+      Random rand = new Random();
+      String[] puzzle = new String[arr.length];
+      for(int i = 0; i < arr.length; i++)
+      {
+         puzzle.add(rand.nextLine(1));
+      }
+      return puzzle;     
+   }
+   
+   // plays one game of the phrase guess
+   public static boolean[] playGame()
+   {
+      String phrase;
+      for(int i = 0; i < phrase.length; i++)
+      {
+         phrase[i] = false;
+         if(!phrase[i].equals(-1))
+         {
+            System.out.print(i);
+         }
+            while(phrase[i])
+            {
+               phrase[i] = '_';
+               if(phrase.chatAt[i] == ' ')
+               {
+                  phrase[i] = ' ';
+               }
+               i++;
+            }
+            System.out.print(phrase);
+         
+         System.out.print("Guess a letter > ");
+         char guess = in.next();
+         guess = Character.toLowerCase(guess);
+         while(MAX>0)
+         {
+            if(phrase.contains(guess))
+            {
+               for(int j = 0; j < phrase.length(); j++)
+               {
+                  if(phrase.charAt(j) == guess)
+                  {
+                     blank[j] = guess;
+                  }
+               }
+            }
+            else
+            {
+               MAX--;
+            }
+         }
+      }  
+   }
+   
+   // prints puzzle according to the boolean array
+   public static String printPuzzle()
+   {
+      while(!phrase)
+      {
+         if(!phrase)
+            System.out.print("_" * phrase.length);
+         else
+            System.out.print(phrase[i]);
+      }
+   }
+   
+   // returns true if all boolean values are true and falus otherwise
+   // checks if puzzle is solved, when all char is displayed to user
+   public static boolean checkIfSolved(String[] solved)
+   {
+      if(phrase == phrase)
+         return true;
+      else
+         return false;
+   }
+   
+   // checks if the users guess is in the puzzle and returns number
+   // of times that letter occurrence 
+   public static int checkGuess(String[] guess)
+   {
+      if(guess.equals(phrase))
+         System.out.println("hello");
+   }
+}
